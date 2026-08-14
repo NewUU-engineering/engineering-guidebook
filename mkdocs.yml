@@ -1,0 +1,92 @@
+site_name: Engineering Guidebook
+site_description: A guidebook to the School of Engineering at New Uzbekistan University — what we aim at, how we get there, and what it means in practice
+site_url: 'https://newuu-engineering.github.io/engineering-guidebook/'
+repo_name: 'NewUU-engineering'
+repo_url: 'https://github.com/NewUU-engineering/engineering-guidebook'
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    # navigation.instant is intentionally omitted: it breaks the contextual
+    # link of the language switcher, which would send readers to the home
+    # page instead of the same page in the other language.
+    - navigation.tracking
+    - navigation.top
+    - toc.follow
+    - content.tabs.link
+plugins:
+  - search:
+      lang:
+        - en
+        - ru
+  - i18n:
+      docs_structure: suffix
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: ru
+          name: Русский
+          build: true
+          site_name: Engineering Guidebook
+          site_description: Путеводитель по Инженерной школе Университета Нового Узбекистана — к чему мы стремимся, как этого добиваемся и что это значит на практике
+          nav_translations:
+            Introduction: Введение
+            What we aim at: К чему мы стремимся
+            How we get there: Как мы этого добиваемся
+            In practice: На практике
+            Academic ethics: Академическая этика
+            Small groups and projects: Малые группы и проекты
+            Passing a course: Как пройти дисциплину
+            Working with AI tools: Работа с ИИ-инструментами
+            Safety is part of the culture: Безопасность — часть культуры
+            Advice for your years here: Советы на годы учёбы
+            For instructors: Рекомендации преподавателям
+            Contributing: Как участвовать
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  - pymdownx.details
+  - pymdownx.superfences
+nav:
+  - Introduction: "index.md"
+  - What we aim at: "orientations.md"
+  - How we get there: "methods.md"
+  - In practice:
+    - Academic ethics: "ethics.md"
+    - Small groups and projects: "groups.md"
+    - Passing a course: "courses.md"
+    - Working with AI tools: "ai-tools.md"
+    - Safety is part of the culture: "safety.md"
+    - Advice for your years here: "advice.md"
+    - For instructors: "teaching.md"
+  - Contributing: "contributing.md"
