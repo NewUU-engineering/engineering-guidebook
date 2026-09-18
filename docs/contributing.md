@@ -54,26 +54,17 @@ The version and date live at the top of the [Introduction](index.md), with a cha
 
 ## Local deployment
 
-### In a Docker container
-
 ```bash
-git clone https://github.com/NewUU-engineering/engineering-guidebook
-cd engineering-guidebook
-docker pull squidfunk/mkdocs-material
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve          # http://127.0.0.1:8000
 ```
 
-### In a Python virtual environment
+Before pushing:
 
 ```bash
-git clone https://github.com/NewUU-engineering/engineering-guidebook
-cd engineering-guidebook
-python3 -m venv venv
-source venv/bin/activate
-pip install mkdocs-material "mkdocs-static-i18n[material]"
-mkdocs serve
+mkdocs build --strict
 ```
 
-The site is then available at `http://127.0.0.1:8000`.
-
-Pushes to `main` trigger the `Deploy Docs` workflow, which runs `mkdocs gh-deploy --force` and publishes to GitHub Pages from the `gh-pages` branch.
+Pushes to `main` trigger the `Deploy docs` workflow, which builds with `--strict` and publishes to GitHub Pages from the `gh-pages` branch.

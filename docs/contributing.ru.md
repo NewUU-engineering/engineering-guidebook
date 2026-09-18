@@ -54,26 +54,17 @@ Pull request, меняющий то, что эта школа о себе зая
 
 ## Локальный запуск
 
-### В Docker-контейнере
-
 ```bash
-git clone https://github.com/NewUU-engineering/engineering-guidebook
-cd engineering-guidebook
-docker pull squidfunk/mkdocs-material
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve          # http://127.0.0.1:8000
 ```
 
-### В виртуальном окружении Python
+Перед пушем:
 
 ```bash
-git clone https://github.com/NewUU-engineering/engineering-guidebook
-cd engineering-guidebook
-python3 -m venv venv
-source venv/bin/activate
-pip install mkdocs-material "mkdocs-static-i18n[material]"
-mkdocs serve
+mkdocs build --strict
 ```
 
-Сайт будет доступен по адресу `http://127.0.0.1:8000`.
-
-Пуш в `main` запускает workflow `Deploy Docs`, который выполняет `mkdocs gh-deploy --force` и публикует сайт на GitHub Pages из ветки `gh-pages`.
+Пуш в `main` запускает workflow `Deploy docs`, который собирает сайт с `--strict` и публикует его на GitHub Pages из ветки `gh-pages`.

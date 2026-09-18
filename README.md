@@ -8,6 +8,8 @@ It is written for students first. Instructors and staff will find themselves in 
 
 The guidebook is published in both languages. English pages are `docs/*.md`, Russian pages are `docs/*.ru.md`, and the two are kept in step — a substantive change to one should be made to the other.
 
+The site uses the [NewUU documentation template](https://github.com/NewUU-engineering/newuu-docs-template): navy chrome, green accent, IBM Plex Sans. Do not restyle it here — if the theme is missing something, open an issue against the template. Why the colours and type look this way is in [`DESIGN-DECISIONS.md`](DESIGN-DECISIONS.md).
+
 ## Contents
 
 | Chapter | What is in it |
@@ -44,28 +46,21 @@ To state publicly that you follow this guidebook, add your name to [`SIGNATORIES
 
 ## Local deployment
 
-### In a Docker container
-
 ```bash
-git clone https://github.com/NewUU-engineering/engineering-guidebook
-cd engineering-guidebook
-docker pull squidfunk/mkdocs-material
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve          # http://127.0.0.1:8000
 ```
 
-### In a Python virtual environment
+Before pushing:
 
 ```bash
-git clone https://github.com/NewUU-engineering/engineering-guidebook
-cd engineering-guidebook
-python3 -m venv venv
-source venv/bin/activate
-pip install mkdocs-material "mkdocs-static-i18n[material]"
-mkdocs serve
+mkdocs build --strict   # broken links and missing files become errors
 ```
-
-The site is then available at `http://127.0.0.1:8000`.
 
 ## Publishing
 
-Pushes to `main` trigger the `Deploy Docs` workflow, which runs `mkdocs gh-deploy --force` and publishes the site to GitHub Pages from the `gh-pages` branch.
+Pushes to `main` trigger the `Deploy docs` workflow, which builds with `--strict` and publishes the site to GitHub Pages from the `gh-pages` branch.
+
+The university logo and mark in `docs/assets/` remain the property of New Uzbekistan University.
